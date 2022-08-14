@@ -1,4 +1,9 @@
 <div>
+    <style>
+        nav svg {
+            height: 20px;
+        }
+    </style>
     @include('livewire.create')
     @include('livewire.edit')
     <div class="container">
@@ -8,12 +13,19 @@
                     <div class="alert alert-success">{{ session('message') }}</div>
                 @endif
                 <div class="card">
-                    <div class="card-header d-flex justify-content-between">
-                        <h1>All Students</h1>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addStudentModal">
-                            Add Student
-                        </button>
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-8 d-flex justify-content-between">
+                                <h1>All Students</h1>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addStudentModal">
+                                    Add Student
+                                </button>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" placeholder="Search..." wire:model="searchTerm">
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <table class="table table-striped">
@@ -45,6 +57,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        {{ $students->links() }}
                     </div>
                 </div>
             </div>
